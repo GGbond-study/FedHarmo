@@ -18,11 +18,11 @@ Run ``` python data_split.py ``` to divide the data into training, validation, a
 ## 🚀 Usage
 For endoscopic polyp segmentation, the command for execution is as follows:
 ```bash
-CUDA_VISIBLE_DEVICES=0 python main_seg_al.py --dataset Polyp --fl_method FedHarmo --deterministic True --seed 3 --max_round 200 --gamma 0.99 --annealing_step 10
+CUDA_VISIBLE_DEVICES=0 python main_seg_al.py --dataset Polyp --fl_method FedHarmo --deterministic True --seed 2025 --max_round 200 --gamma 0.99 --annealing_step 10
 ```
 For prostate segmentation, the command for execution is as follows:
 ```bash
-CUDA_VISIBLE_DEVICES=0 python main_seg_al.py --dataset Prostate --fl_method FedHarmo --deterministic True --seed 3 --max_round 200 --gamma 0.99 --annealing_step 10
+CUDA_VISIBLE_DEVICES=0 python main_seg_al.py --dataset Prostate --fl_method FedHarmo --deterministic True --seed 2025 --max_round 200 --gamma 0.99 --annealing_step 10
 ```
 
 ## 🙏 Acknowledment
