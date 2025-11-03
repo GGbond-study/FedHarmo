@@ -70,7 +70,7 @@ if __name__ == '__main__':
     dataset = args.dataset
     assert dataset in ['Polyp', 'Prostate']
     fl_method = args.fl_method
-    assert fl_method in ['FedEvi', 'FedAvg', 'FedBN', 'FedProx', 'FedUAA', 'FedSAM', 'FedAvg_EDL', 'FedAvg_mmd', 'FedCLAM', 'FedAvg_agg']
+    assert fl_method in ['FedHarmo']
 
     batch_size = args.batch_size
     base_lr = args.base_lr
@@ -78,68 +78,11 @@ if __name__ == '__main__':
     norm = args.norm
     
 
-    if fl_method == 'FedEvi':
-        from utils.seg.train_fedavg import train
-        bn = False
-        norm = 'in'
-        val_batch_size = 1
-    
-    if fl_method == 'FedAvg':
-        from utils.seg.train_fedavg import train
-        bn = True
-        norm = 'in'
-        val_batch_size = 1
-        
-    if fl_method == 'FedAvg_agg':
+    if fl_method == 'FedHarmo':
         from utils.seg.train_fedavg_mmd import train
         bn = True
         norm = 'in'
         val_batch_size = 1
-        
-    if fl_method == 'FedAvg_EDL':
-        from utils.seg.train_fedevi import train
-        bn = False
-        norm = 'in'
-        val_batch_size = 1
-        
-    if fl_method == 'FedAvg_mmd':
-        from utils.seg.train_fedavg_mmd import train
-        bn = False
-        norm = 'in'
-        val_batch_size = 1
-        
-    if fl_method == 'FedCLAM':
-        from utils.seg.train_fedclam import train
-        bn = False
-        norm = 'in'
-        val_batch_size = 1
-        
-    if fl_method == 'FedSAM':
-        from utils.seg.train_fedsam import train
-        args.sam_rho = 0.01
-        bn = True
-        norm = 'in'
-        val_batch_size = 1
-
-    if fl_method == 'FedBN':
-        from utils.seg.train_fedavg import train
-        bn = False
-        norm = 'in'
-        val_batch_size = 1
-
-    if fl_method == 'FedProx':
-        from utils.seg.train_fedprox import train
-        args.proximal_mu = 0.01
-        bn = True
-        norm = 'in'
-        val_batch_size = 1
-
-    if fl_method == 'FedUAA':
-        from utils.seg.train_feduaa import train
-        bn = True
-        norm = 'in'
-        val_batch_size = 1
-   
     
     if dataset == 'Polyp':
         c = 3
@@ -224,7 +167,7 @@ if __name__ == '__main__':
 
         for client_idx in range(client_num):
             print(client_idx)
-            if fl_method == 'FedAvg_agg':
+            if fl_method == 'FedHarmo':
                 local_models[client_idx] = train(round_idx=round_idx+1,
                                                     client_idx=client_idx, 
                                                     model=local_models[client_idx], 
@@ -245,22 +188,14 @@ if __name__ == '__main__':
         # update the global model, while the local models haven't been updated
         global_model = FedAvg(global_model, local_models, client_weight, bn=bn)   
 
-        if fl_method == 'FedEvi':
-            for client_idx in range(client_num):
-                u_dis[client_idx, round_idx], u_data[client_idx, round_idx] = scoring_func(global_model, local_models[client_idx], local_val_loaders[client_idx], client_idx=client_idx, args=args)
-
-
-            client_weight += args.ratio * u_dis[:, round_idx] / u_data[:, round_idx]
-            client_weight /= client_weight.sum()
-            client_weight = np.clip(client_weight, a_min=1e-3, a_max=None)
-        elif fl_method == 'FedAvg_agg':
+        if fl_method == 'FedHarmo':
             for client_idx in range(client_num):
                 u_dis[client_idx, round_idx], u_data[client_idx, round_idx] = test(dataset=dataset, model=global_model, dataloader=local_val_loaders[client_idx], client_idx=client_idx, args=args)
             client_dice, client_hd = u_dis[:, round_idx], u_data[:, round_idx]
             client_dice = client_dice.sum() - client_dice
             client_dice /= client_dice.sum()
             client_hd /= client_hd.sum()
-            client_weight = client_hd #(0.5 * client_hd) + (0.5 * client_dice)
+            client_weight = (0.5 * client_hd) + (0.5 * client_dice)
         
         
         global_model = FedAvg(global_model, local_models, client_weight, bn=bn)
