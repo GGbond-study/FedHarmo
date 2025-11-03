@@ -18,6 +18,6 @@ $ bash run_polyp.sh
 
 ## 🙏 Acknowledment
 This repository is based on modifications of the following code repositories: 
-* [Original Repo 1](https://github.com/original-author1/original-repo1), 
-* [Original Repo 2](https://github.com/original-author2/original-repo2). 
+* [FedEvi](https://github.com/JiayiChen815/FedEvi);
+* [MMD](https://github.com/ZongxianLee/MMD_Loss.Pytorch);  \
 We would like to express our sincere gratitude to the original authors for their outstanding contributions, which have laid a solid foundation for our work. Their dedication and expertise have been invaluable in shaping the development of this project.
