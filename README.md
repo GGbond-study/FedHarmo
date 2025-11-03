@@ -2,15 +2,16 @@
 
 This repo is the implementation of "FedHarmo: Harmonizing Global Aggregation and Local Alignment in Cross-Domain Federated Medical Image Segmentation".
 
-💻 
-## Please review the following requirements and install the packages listed in the `requirements.txt` file.
+## 💻 Requirements
+Please review the following requirements and install the packages listed in the `requirements.txt` file.
 
 ```bash
 $ pip install --upgrade pip
 $ pip install -r requirements.txt
 ```
 
-## For endoscopic polyp segmentation, the command for execution is as follows:
+## 🚀 Usage
+For endoscopic polyp segmentation, the command for execution is as follows:
 ```bash
 $ bash run_polyp.sh
 ```
