@@ -17,5 +17,7 @@ $ bash run_polyp.sh
 ```
 
 ## 🙏 Acknowledment
-This repo is [百度](https://www.baidu.com "百度一下，你就知道")
-<https://www.example.com>
+This repository is based on modifications of the following code repositories: 
+* [Original Repo 1](https://github.com/original-author1/original-repo1), 
+* [Original Repo 2](https://github.com/original-author2/original-repo2). 
+We would like to express our sincere gratitude to the original authors for their outstanding contributions, which have laid a solid foundation for our work. Their dedication and expertise have been invaluable in shaping the development of this project.
