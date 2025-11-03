@@ -10,10 +10,10 @@ $ pip install -r requirements.txt
 ```
 
 ## 📚 Data Preparation
-Download the required datasets and unzip them to ../Dataset/ folder. Please reorganize the dataset according to the structure specified in the tree.txt file.  \
+Download the required datasets and unzip them to ```bash ../Dataset/ ``` folder. Please reorganize the dataset according to the structure specified in the ```bash tree.txt ``` file.  \
 Download links: endoscopic polyp dataset, prostate MRI dataset(IN [FedEvi](https://github.com/JiayiChen815/FedEvi)).  \
-Navigate to the data/ folder and run python prepare_dataset.py to transform the original dataset into *.npyformat.  \
-Run python data_split.py to divide the data into training, validation, and test sets.  \
+Navigate to the ```bash data/ ``` folder and run python ```bash prepare_dataset.py ``` to transform the original dataset into *.npyformat.  \
+Run ```bash python data_split.py ``` to divide the data into training, validation, and test sets.  \
 
 ## 🚀 Usage
 For endoscopic polyp segmentation, the command for execution is as follows:
