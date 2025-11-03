@@ -20,6 +20,10 @@ For endoscopic polyp segmentation, the command for execution is as follows:
 ```bash
 $ bash run_polyp.sh
 ```
+For prostate segmentation, the command for execution is as follows:
+```bash
+$ bash run_prostate.sh
+```
 
 ## 🙏 Acknowledment
 This repository is based on modifications of the following code repositories: 
