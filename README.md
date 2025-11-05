@@ -26,7 +26,7 @@ CUDA_VISIBLE_DEVICES=0 python main_seg_al.py --dataset Prostate --fl_method FedH
 ```
 
 ## 🙏 Acknowledment
-This repository is based on modifications of the following code repositories: 
+This repository is based on the following code repositories: 
 * [FedEvi](https://github.com/JiayiChen815/FedEvi);
 * [MMD](https://github.com/ZongxianLee/MMD_Loss.Pytorch);  \
 We would like to express our sincere gratitude to the original authors for their outstanding contributions, which have laid a solid foundation for our work. Their dedication and expertise have been invaluable in shaping the development of this project.
